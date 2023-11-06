@@ -47,7 +47,7 @@ const About = () => {
         </div>
       </section>
 
-      <section class="ftco-section ftco-about ftco-no-pt img">
+      <section className="ftco-section ftco-about ftco-no-pt img">
         <div class="container">
           <div class="row d-flex">
             <div class="col-md-12 about-intro">

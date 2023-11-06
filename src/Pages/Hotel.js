@@ -3,8 +3,95 @@ import Header from "../Components/Header";
 import Footer from "../Components/Footer";
 import { Link } from "react-router-dom";
 import HotelList from "../Components/HotelList";
+import HotelSearch from "../Components/HotelSearch";
 
 const Hotel = () => {
+
+  const hotel_List = [
+    {
+      hotel_image : require("../images/hotel-resto-1.jpg"),
+      hotel_price : 300,
+      hotel_stay : 8,
+      hotel_name : "Sai Beach Resort",
+      hotel_location : "Mumbai, India",
+      hotel_washRoom : 2,
+      hotel_bed : 3
+    },
+    {
+      hotel_image : require("../images/hotel-resto-2.jpg"),
+      hotel_price : 500,
+      hotel_stay : 10,
+      hotel_name : "LeMerdian",
+      hotel_location : "Switzerland",
+      hotel_washRoom : 3,
+      hotel_bed : 4
+    },
+    {
+      hotel_image : require("../images/hotel-resto-3.jpg"),
+      hotel_price : 300,
+      hotel_stay : 8,
+      hotel_name : "Royal Palace",
+      hotel_location : "Rome",
+      hotel_washRoom : 2,
+      hotel_bed : 3
+    },
+    {
+      hotel_image : require("../images/hotel-resto-4.jpg"),
+      hotel_price : 300,
+      hotel_stay : 8,
+      hotel_name : "Hilton",
+      hotel_location : "Japan",
+      hotel_washRoom : 2,
+      hotel_bed : 3
+    },
+    {
+      hotel_image : require("../images/hotel-resto-5.jpg"),
+      hotel_price : 300,
+      hotel_stay : 8,
+      hotel_name : "Ceaser Hotel",
+      hotel_location : "Vietnam",
+      hotel_washRoom : 2,
+      hotel_bed : 3
+    },
+    {
+      hotel_image : require("../images/hotel-resto-6.jpg"),
+      hotel_price : 300,
+      hotel_stay : 8,
+      hotel_name : "Hotel Don Carlton",
+      hotel_location : "Dubai",
+      hotel_washRoom : 2,
+      hotel_bed : 3
+    },
+    {
+      hotel_image : require("../images/hotel-resto-7.jpg"),
+      hotel_price : 300,
+      hotel_stay : 8,
+      hotel_name : "Holiday Resort",
+      hotel_location : "England",
+      hotel_washRoom : 2,
+      hotel_bed : 3
+    },
+    {
+      hotel_image : require("../images/hotel-resto-8.jpg"),
+      hotel_price : 300,
+      hotel_stay : 8,
+      hotel_name : "Stay High Hotel",
+      hotel_location : "Norway",
+      hotel_washRoom : 2,
+      hotel_bed : 3
+    },
+    {
+      hotel_image : require("../images/hotel-resto-9.jpg"),
+      hotel_price : 300,
+      hotel_stay : 8,
+      hotel_name : "Snow Fall Resort",
+      hotel_location : "Russia",
+      hotel_washRoom : 2,
+      hotel_bed : 3
+    },
+    
+  ]
+
   return (
     <>
       <Header />
@@ -38,94 +125,7 @@ const Hotel = () => {
           <div className="row">
             <div className="col-md-12">
               <div className="search-wrap-1">
-                <form action="#" className="search-property-1">
-                  <div className="row no-gutters">
-                    <div className="col-lg d-flex">
-                      <div className="form-group p-4 border-0">
-                        <label htmlFor="#">Destination</label>
-                        <div className="form-field">
-                          <div className="icon">
-                            <span className="fa fa-search"></span>
-                          </div>
-                          <input
-                            type="text"
-                            className="form-control"
-                            placeholder="Search place"
-                          />
-                        </div>
-                      </div>
-                    </div>
-                    <div className="col-lg d-flex">
-                      <div className="form-group p-4">
-                        <label htmlFor="#">Check-in date</label>
-                        <div className="form-field">
-                          <div className="icon">
-                            <span className="fa fa-calendar"></span>
-                          </div>
-                          <input
-                            type="text"
-                            className="form-control checkin_date"
-                            placeholder="Check In Date"
-                          />
-                        </div>
-                      </div>
-                    </div>
-                    <div className="col-lg d-flex">
-                      <div className="form-group p-4">
-                        <label htmlFor="#">Check-out date</label>
-                        <div className="form-field">
-                          <div className="icon">
-                            <span className="fa fa-calendar"></span>
-                          </div>
-                          <input
-                            type="text"
-                            className="form-control checkout_date"
-                            placeholder="Check Out Date"
-                          />
-                        </div>
-                      </div>
-                    </div>
-                    <div className="col-lg d-flex">
-                      <div className="form-group p-4">
-                        <label htmlFor="#">Price Limit</label>
-                        <div className="form-field">
-                          <div className="select-wrap">
-                            <div className="icon">
-                              <span className="fa fa-chevron-down"></span>
-                            </div>
-                            <select name="" id="" className="form-control">
-                              <option value="">$5,000</option>
-                              <option value="">$10,000</option>
-                              <option value="">$50,000</option>
-                              <option value="">$100,000</option>
-                              <option value="">$200,000</option>
-                              <option value="">$300,000</option>
-                              <option value="">$400,000</option>
-                              <option value="">$500,000</option>
-                              <option value="">$600,000</option>
-                              <option value="">$700,000</option>
-                              <option value="">$800,000</option>
-                              <option value="">$900,000</option>
-                              <option value="">$1,000,000</option>
-                              <option value="">$2,000,000</option>
-                            </select>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="col-lg d-flex">
-                      <div className="form-group d-flex w-100 border-0">
-                        <div className="form-field w-100 align-items-center d-flex">
-                          <input
-                            type="submit"
-                            value="Search"
-                            className="align-self-stretch form-control btn btn-primary"
-                          />
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </form>
+                <HotelSearch />
               </div>
             </div>
           </div>
@@ -135,15 +135,11 @@ const Hotel = () => {
       <section class="ftco-section">
         <div class="container">
           <div class="row">
-            <HotelList />
-            <HotelList />
-            <HotelList />
-            <HotelList />
-            <HotelList />
-            <HotelList />
-            <HotelList />
-            <HotelList />
-            <HotelList />
+            {hotel_List.map((list,index) => {
+              return (
+                <HotelList list={list} index={index} />
+              )
+            })}
           </div>
           <div class="row mt-5">
             <div class="col text-center">

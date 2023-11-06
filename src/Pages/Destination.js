@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import Header from "../Components/Header";
 import Footer from "../Components/Footer";
 import { Link } from "react-router-dom";
 import DestinationList from "../Components/DestinationList";
+import TourSearch from "../Components/TourSeach";
 
 const Destination = () => {
   const destinationList = [
@@ -61,6 +62,21 @@ const Destination = () => {
       tour_count: 10,
     },
   ];
+  const [filteredDestinations, setFilteredDestinations] = useState([]);
+
+  const filterTour = (searchPlace) => {
+    const filtered = destinationList.filter((location) => {
+      return (
+        location.tour_location
+          .toLowerCase()
+          .includes(searchPlace.tour_location.toLowerCase()) &&
+        location.tour_location
+          .toLowerCase()
+          .includes(searchPlace.tour_location.toLowerCase())
+      );
+    });
+    setFilteredDestinations(filtered);
+  };
   return (
     <>
       <Header />
@@ -94,52 +110,7 @@ const Destination = () => {
           <div className="row">
             <div className="col-md-12">
               <div className="search-wrap-1">
-                <form action="#" className="search-property-1">
-                  <div className="row no-gutters">
-                    <div className="col-lg d-flex">
-                      <div className="form-group p-4 border-0">
-                        <label htmlFor="#">Destination</label>
-                        <div className="form-field">
-                          <div className="icon">
-                            <span className="fa fa-search"></span>
-                          </div>
-                          <input
-                            type="text"
-                            className="form-control"
-                            placeholder="Search place"
-                          />
-                        </div>
-                      </div>
-                    </div>
-                    <div className="col-lg d-flex">
-                      <div className="form-group p-4 border-0">
-                        <label htmlFor="#">Location/Area</label>
-                        <div className="form-field">
-                          <div className="icon">
-                            <span className="fa fa-location-arrow"></span>
-                          </div>
-                          <input
-                            type="text"
-                            className="form-control"
-                            placeholder="Search place"
-                          />
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="col-lg d-flex">
-                      <div className="form-group d-flex w-100 border-0">
-                        <div className="form-field w-100 align-items-center d-flex">
-                          <input
-                            type="submit"
-                            value="Search"
-                            className="align-self-stretch form-control btn btn-primary"
-                          />
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </form>
+                <TourSearch filterTour={filterTour} />
               </div>
             </div>
           </div>
@@ -149,11 +120,13 @@ const Destination = () => {
       <section className="ftco-section">
         <div className="container">
           <div className="row">
-            {destinationList.map((value, index) => {
-              return (
-                <DestinationList value={value} index={index} />
-              )
-            })}
+            {filteredDestinations.length > 0
+              ? filteredDestinations.map((value, index) => (
+                  <DestinationList value={value} index={index} />
+                ))
+              : destinationList.map((value, index) => {
+                  return <DestinationList value={value} index={index} />;
+                })}
           </div>
           <div className="row mt-5">
             <div className="col text-center">
