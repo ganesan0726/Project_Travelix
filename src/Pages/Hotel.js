@@ -6,7 +6,6 @@ import HotelList from "../Components/HotelList";
 import HotelSearch from "../Components/HotelSearch";
 
 const Hotel = () => {
-
   const hotel_List = [
     {
       hotel_image : require("../images/hotel-resto-1.jpg"),
@@ -92,6 +91,11 @@ const Hotel = () => {
     
   ]
 
+
+  const searchHotelApi = (filterHotels) => {
+    console.log(filterHotels)
+  }
+  
   return (
     <>
       <Header />
@@ -125,30 +129,30 @@ const Hotel = () => {
           <div className="row">
             <div className="col-md-12">
               <div className="search-wrap-1">
-                <HotelSearch />
+                <HotelSearch callBack={searchHotelApi} />
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      <section class="ftco-section">
-        <div class="container">
-          <div class="row">
+      <section className="ftco-section">
+        <div className="container">
+          <div className="row">
             {hotel_List.map((list,index) => {
               return (
-                <HotelList list={list} index={index} />
+                <HotelList list={list} key={index} />
               )
             })}
           </div>
-          <div class="row mt-5">
-            <div class="col text-center">
-              <div class="block-27">
+          <div className="row mt-5">
+            <div className="col text-center">
+              <div className="block-27">
                 <ul>
                   <li>
                     <a href="/">&lt;</a>
                   </li>
-                  <li class="active">
+                  <li className="active">
                     <span>1</span>
                   </li>
                   <li>

@@ -350,7 +350,7 @@ progress {
 
 [type="search"] {
   outline-offset: -2px;
-  -webkit-appearance: none;
+  /* -webkit-appearance: none; */
 }
 
 [type="search"]::-webkit-search-decoration {
@@ -12488,7 +12488,7 @@ textarea.form-control {
 .mfp-with-zoom .mfp-container,
 .mfp-with-zoom.mfp-bg {
   opacity: 0;
-  -webkit-backface-visibility: hidden;
+  /* -webkit-backface-visibility: hidden; */
   -webkit-transition: all 0.3s ease-out;
   -moz-transition: all 0.3s ease-out;
   -o-transition: all 0.3s ease-out;
@@ -12582,7 +12582,7 @@ textarea.form-control {
   background: -ms-linear-gradient(45deg, #207ce5 0%, #13d42a 100%);
   background: linear-gradient(45deg, #207ce5 0%, #13d42a 100%);
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#207ce5', endColorstr='#13d42a', GradientType=1 );
-  -webkit-background-clip: text;
+  /* -webkit-background-clip: text; */
   -webkit-text-fill-color: transparent;
 }
 
@@ -13175,4 +13175,17 @@ textarea.form-control {
 
 .active li { 
   color: #f15d30 !important;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  background: transparent;
+  bottom: 0;
+  color: transparent;
+  cursor: pointer;
+  height: auto;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: auto;
 }

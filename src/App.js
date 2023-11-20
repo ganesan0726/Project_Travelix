@@ -9,16 +9,21 @@ import PageNotFound from "./Pages/PageNotFound";
 
 import "./css/style.css";
 import "./css/flaticon.css";
+import AdminHotel from "./Pages/AdminHotel";
+import AdminDestination from "./Pages/AdminDestination";
+
 
 const App = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Home />}></Route>
-        <Route path="/about" element={<About />}></Route>
-        <Route path="/contact" element={<Contact />}></Route>
-        <Route path="/destination" element={<Destination />}></Route>
-        <Route path="/hotel" element={<Hotel />}></Route>
+        <Route path="" element={<Home />}></Route>
+        <Route path="about" element={<About />}></Route>
+        <Route path="contact" element={<Contact />}></Route>
+        <Route path="destination" element={<Destination />}></Route>
+        <Route path="hotel" element={<Hotel />}></Route>
+        <Route path="admin/hotel" element={<AdminHotel />} ></Route>
+        <Route path="admin/destination" element={<AdminDestination />}></Route>
         <Route path="*" element={<PageNotFound />}></Route>
       </Routes>
     </BrowserRouter>
