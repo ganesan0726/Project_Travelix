@@ -1,3 +1,8 @@
 video : 1:01:47;
 
 hotel-search and Tour search la irundu continue pananum..
+
+
+    const sqlquery = `INSERT INTO hotelLists (hotelName,locationName,stayCount, washRoomCount, bedCount, price, hotelImage) values ('${data.hotelName}', '${data.locationName}', '${data.stayCount}', '${data.washRoomCount}', '${data.bedCount}', '${data.price}', '${data.hotelImage}' )`;
+
+    const sqlQuery = `INSERT INTO destinations (destinationName, destinationImage, destinationCount) values ('${data.destinationName}', '${data.destinationImage}', '${data.destinationCount}')`;
