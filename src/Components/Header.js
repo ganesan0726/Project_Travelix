@@ -1,7 +1,12 @@
-import React from "react";
+import React,{useState} from "react";
 import { NavLink } from "react-router-dom";
 
 const Header = () => {
+  const [isNavOpen, setIsNavOpen] = useState(false);
+
+  const handleNavToggle = () => {
+    setIsNavOpen(!isNavOpen);
+  }
   return (
     <nav
       className="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light"
@@ -19,11 +24,12 @@ const Header = () => {
           aria-controls="ftco-nav"
           aria-expanded="false"
           aria-label="Toggle navigation"
+          onClick={handleNavToggle}
         >
           <span className="oi oi-menu">Menu</span>
         </button>
 
-        <div className="collapse navbar-collapse" id="ftco-nav">
+        <div className={`collapse navbar-collapse ${isNavOpen ? "show" : ""}`} id="ftco-nav">
           <ul className="navbar-nav ml-auto">
             <NavLink
               to="/"
@@ -64,6 +70,14 @@ const Header = () => {
               }
             >
               <li className="nav-link">Contact</li>
+            </NavLink>
+            <NavLink
+              to="/admin"
+              className={({ isActive }) =>
+                isActive ? "nav-item active" : "nav-item"
+              }
+            >
+              <li className="nav-link">Admin</li>
             </NavLink>
           </ul>
         </div>

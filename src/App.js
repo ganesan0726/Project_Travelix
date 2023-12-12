@@ -11,7 +11,7 @@ import "./css/style.css";
 import "./css/flaticon.css";
 import AdminHotel from "./Pages/AdminHotel";
 import AdminDestination from "./Pages/AdminDestination";
-
+import Admin from "./Pages/Admin";
 
 const App = () => {
   return (
@@ -22,8 +22,14 @@ const App = () => {
         <Route path="contact" element={<Contact />}></Route>
         <Route path="destination" element={<Destination />}></Route>
         <Route path="hotel" element={<Hotel />}></Route>
-        <Route path="admin/hotel" element={<AdminHotel />} ></Route>
-        <Route path="admin/destination" element={<AdminDestination />}></Route>
+        <Route path="admin" element={<Admin></Admin>}>
+          <Route path="hotel" element={<AdminHotel />}></Route>
+          <Route
+            path="destination"
+            element={<AdminDestination />}
+          ></Route>
+        </Route>
+
         <Route path="*" element={<PageNotFound />}></Route>
       </Routes>
     </BrowserRouter>

@@ -38,33 +38,33 @@ const About = () => {
       <Service />
 
       <section
-        class="ftco-section ftco-about img"
+        className="ftco-section ftco-about img"
         style={{ backgroundImage: `url(${require("../images/bg_4.jpg")})` }}
       >
-        <div class="overlay"></div>
-        <div class="container py-md-5">
-          <div class="row py-md-5"></div>
+        <div className="overlay"></div>
+        <div className="container py-md-5">
+          <div className="row py-md-5"></div>
         </div>
       </section>
 
       <section className="ftco-section ftco-about ftco-no-pt img">
-        <div class="container">
-          <div class="row d-flex">
-            <div class="col-md-12 about-intro">
-              <div class="row">
-                <div class="col-md-6 d-flex align-items-stretch">
+        <div className="container">
+          <div className="row d-flex">
+            <div className="col-md-12 about-intro">
+              <div className="row">
+                <div className="col-md-6 d-flex align-items-stretch">
                   <div
-                    class="img d-flex w-100 align-items-center justify-content-center"
+                    className="img d-flex w-100 align-items-center justify-content-center"
                     style={{
                       backgroundImage: `url(${require("../images/about-1.jpg")})`,
                     }}
                   ></div>
                 </div>
-                <div class="col-md-6 pl-md-5 py-5">
-                  <div class="row justify-content-start pb-3">
-                    <div class="col-md-12 heading-section">
-                      <span class="subheading">About Us</span>
-                      <h2 class="mb-4">
+                <div className="col-md-6 pl-md-5 py-5">
+                  <div className="row justify-content-start pb-3">
+                    <div className="col-md-12 heading-section">
+                      <span className="subheading">About Us</span>
+                      <h2 className="mb-4">
                         Make Your Tour Memorable and Safe With Us
                       </h2>
                       <p>
@@ -74,7 +74,7 @@ const About = () => {
                         the coast of the Semantics, a large language ocean.
                       </p>
                       <p>
-                        <a href="/destination" class="btn btn-primary">
+                        <a href="/destination" className="btn btn-primary">
                           Book Your Destination
                         </a>
                       </p>

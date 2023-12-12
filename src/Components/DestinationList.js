@@ -9,12 +9,12 @@ const DestinationList = (props) => {
             href="/"
             className="img"
             style={{
-              backgroundImage: `url(${props?.value?.tour_image})`,
+              backgroundImage: `url(${props?.value?.destinationImage})`,
             }}
           >
             <div className="text">
-              <h3>{props?.value?.tour_location}</h3>
-              <span>{props?.value?.tour_count} Places</span>
+              <h3>{props?.value?.destinationName}</h3>
+              <span>{props?.value?.destinationCount} Places</span>
             </div>
           </a>
         </div>

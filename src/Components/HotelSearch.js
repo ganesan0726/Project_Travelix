@@ -2,19 +2,25 @@ import React, { useState } from "react";
 
 const HotelSearch = (props) => {
   const [hotelSearch, setHotelSearch] = useState({
-    hotel_location: "",
+    hotelLocation: "",
     hotel_checkIn_date: "",
     hotel_checkOut_date: "",
     hotel_price: "",
   });
 
   const handleInput = (event) => {
-    setHotelSearch({...hotelSearch, [event.target.id] : event.target.value});
-  }
+    setHotelSearch({ ...hotelSearch, [event.target.id]: event.target.value });
+  };
 
   const searchHotels = () => {
-    props?.callBack(hotelSearch);
-  }
+    props.callBack(hotelSearch);
+    setHotelSearch({
+      hotelLocation: "",
+      hotel_checkIn_date: "",
+      hotel_checkOut_date: "",
+      hotel_price: "",
+    });
+  };
 
   return (
     <div
@@ -36,7 +42,8 @@ const HotelSearch = (props) => {
                   type="text"
                   className="form-control"
                   placeholder="Search place"
-                  id="hotel_location"
+                  id="hotelLocation"
+                  value={hotelSearch.hotelLocation}
                   onChange={handleInput}
                 />
               </div>
@@ -55,6 +62,7 @@ const HotelSearch = (props) => {
                   name="begin"
                   placeholder="dd-mm-yyyy"
                   id="hotel_checkIn_date"
+                  value={hotelSearch.hotel_checkIn_date}
                   onChange={handleInput}
                 />
               </div>
@@ -72,6 +80,7 @@ const HotelSearch = (props) => {
                   className="form-control checkout_date"
                   placeholder="dd-mm-yyyy"
                   id="hotel_checkOut_date"
+                  value={hotelSearch.hotel_checkOut_date}
                   onChange={handleInput}
                 />
               </div>
@@ -85,21 +94,27 @@ const HotelSearch = (props) => {
                   <div className="icon">
                     <span className="fa fa-chevron-down"></span>
                   </div>
-                  <select name="" id="hotel_price" className="form-control" onChange={handleInput}>
-                    <option >$100</option>
-                    <option >$10,000</option>
-                    <option >$50,000</option>
-                    <option >$100,000</option>
-                    <option >$200,000</option>
-                    <option >$300,000</option>
-                    <option >$400,000</option>
-                    <option >$500,000</option>
-                    <option >$600,000</option>
-                    <option >$700,000</option>
-                    <option >$800,000</option>
-                    <option >$900,000</option>
-                    <option >$1,000,000</option>
-                    <option >$2,000,000</option>
+                  <select
+                    name=""
+                    id="hotel_price"
+                    className="form-control"
+                    value={hotelSearch.hotel_price}
+                    onChange={handleInput}
+                  >
+                    <option>$100</option>
+                    <option>$10,000</option>
+                    <option>$50,000</option>
+                    <option>$100,000</option>
+                    <option>$200,000</option>
+                    <option>$300,000</option>
+                    <option>$400,000</option>
+                    <option>$500,000</option>
+                    <option>$600,000</option>
+                    <option>$700,000</option>
+                    <option>$800,000</option>
+                    <option>$900,000</option>
+                    <option>$1,000,000</option>
+                    <option>$2,000,000</option>
                   </select>
                 </div>
               </div>

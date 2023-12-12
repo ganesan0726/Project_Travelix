@@ -1,20 +1,23 @@
-import React,{useState} from "react";
+import React, { useState } from "react";
 
 const TourSearch = (props) => {
   const [tourSearch, setTourSearch] = useState({
-    tour_destination : "",
-    tour_location : ""
-  })
+    destination: "",
+    location: "",
+  });
 
-const handleInput = (event) => {
-  setTourSearch({...tourSearch, [event.target.id] : event.target.value});
-}
+  const handleInput = (event) => {
+    setTourSearch({ ...tourSearch, [event.target.id]: event.target.value });
+  };
 
-const SearchTour = () => {
-  // console.log(tourSearch)
-  props.filterTour(tourSearch);
-}
-  
+  const SearchTour = () => {
+    // console.log(tourSearch)
+    props.callBack(tourSearch);
+    setTourSearch({
+      destination: "",
+      location: "",
+    });
+  };
 
   return (
     <div
@@ -36,7 +39,8 @@ const SearchTour = () => {
                   type="text"
                   className="form-control"
                   placeholder="Search place"
-                  id="tour_destination"
+                  id="destination"
+                  value={tourSearch.destination}
                   onChange={handleInput}
                 />
               </div>
@@ -53,7 +57,8 @@ const SearchTour = () => {
                   type="text"
                   className="form-control"
                   placeholder="Search place"
-                  id="tour_location"
+                  id="location"
+                  value={tourSearch.location}
                   onChange={handleInput}
                 />
               </div>
@@ -66,7 +71,7 @@ const SearchTour = () => {
                   type="button"
                   value="Search"
                   className="align-self-stretch form-control btn btn-primary p-0"
-                  onClick={SearchTour}
+                  onClick={() => SearchTour()}
                 />
               </div>
             </div>

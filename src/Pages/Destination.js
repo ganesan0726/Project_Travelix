@@ -1,82 +1,56 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Header from "../Components/Header";
 import Footer from "../Components/Footer";
 import { Link } from "react-router-dom";
 import DestinationList from "../Components/DestinationList";
 import TourSearch from "../Components/TourSeach";
+import axios from "axios";
 
 const Destination = () => {
-  const destinationList = [
-    {
-      tour_location: "India",
-      tour_image:
-        "https://cdn.pixabay.com/photo/2020/02/02/17/24/travel-4813658_1280.jpg",
-      tour_count: 10,
-    },
-    {
-      tour_location: "Switzerland",
-      tour_image:
-        "https://cdn.pixabay.com/photo/2012/10/25/23/18/train-62849_1280.jpg",
-      tour_count: 5,
-    },
-    {
-      tour_location: "Rome",
-      tour_image:
-        "https://cdn.pixabay.com/photo/2020/05/17/12/56/rome-5181486_1280.jpg",
-      tour_count: 6,
-    },
-    {
-      tour_location: "Japan",
-      tour_image:
-        "https://cdn.pixabay.com/photo/2016/11/19/21/29/temple-1841296_1280.jpg",
-      tour_count: 12,
-    },
-    {
-      tour_location: "Vietnam",
-      tour_image:
-        "https://cdn.pixabay.com/photo/2015/09/25/11/24/halong-bay-957183_1280.jpg",
-      tour_count: 3,
-    },
-    {
-      tour_location: "Dubai",
-      tour_image:
-        "https://cdn.pixabay.com/photo/2016/01/04/06/26/dubai-1120373_1280.jpg",
-      tour_count: 15,
-    },
-    {
-      tour_location: "England",
-      tour_image:
-        "https://cdn.pixabay.com/photo/2016/11/29/02/12/architecture-1866767_1280.jpg",
-      tour_count: 10,
-    },
-    {
-      tour_location: "Norway",
-      tour_image:
-        "https://cdn.pixabay.com/photo/2017/06/12/11/24/norway-2395221_1280.jpg",
-      tour_count: 10,
-    },
-    {
-      tour_location: "Russia",
-      tour_image:
-        "https://cdn.pixabay.com/photo/2018/03/13/12/55/water-3222480_1280.jpg",
-      tour_count: 10,
-    },
-  ];
-  const [filteredDestinations, setFilteredDestinations] = useState([]);
+  const baseURL = "https://travelix-backend-ngxp.onrender.com/api/";
 
-  const filterTour = (searchPlace) => {
-    const filtered = destinationList.filter((location) => {
-      return (
-        location.tour_location
-          .toLowerCase()
-          .includes(searchPlace.tour_location.toLowerCase()) &&
-        location.tour_location
-          .toLowerCase()
-          .includes(searchPlace.tour_location.toLowerCase())
-      );
-    });
-    setFilteredDestinations(filtered);
+  const [destinationsList, setDestinationsList] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    getAllDestinations();
+  }, []);
+
+  const getAllDestinations = async () => {
+    try {
+      setLoading(true);
+      const response = await axios.get(`${baseURL}list/destination`);
+      setDestinationsList(response.data);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
   };
+
+  const searchTour = async (filterValue) => {
+    try {
+      if (
+        !filterValue ||
+        (filterValue.destination && filterValue.destination === "")
+      ) {
+        getAllDestinations();
+      } else {
+        setLoading(true)
+        const response = await axios.get(
+          `${baseURL}list/destination?destinationName=${filterValue.destination}`,
+        );
+        setDestinationsList(response.data);
+      }
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const LoadingSpinner = () => <div className="loader"></div>;
+
   return (
     <>
       <Header />
@@ -110,7 +84,7 @@ const Destination = () => {
           <div className="row">
             <div className="col-md-12">
               <div className="search-wrap-1">
-                <TourSearch filterTour={filterTour} />
+                <TourSearch callBack={searchTour} />
               </div>
             </div>
           </div>
@@ -120,13 +94,13 @@ const Destination = () => {
       <section className="ftco-section">
         <div className="container">
           <div className="row">
-            {filteredDestinations.length > 0
-              ? filteredDestinations.map((value, index) => (
-                  <DestinationList value={value} index={index} />
-                ))
-              : destinationList.map((value, index) => {
-                  return <DestinationList value={value} index={index} />;
-                })}
+            {loading ? (
+              <LoadingSpinner />
+            ) : (
+              destinationsList.map((value, index) => {
+                return <DestinationList key={index} value={value} />;
+              })
+            )}
           </div>
           <div className="row mt-5">
             <div className="col text-center">

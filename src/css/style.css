@@ -198,7 +198,6 @@ pre {
   margin-top: 0;
   margin-bottom: 1rem;
   overflow: auto;
-  -ms-overflow-style: scrollbar;
 }
 
 figure {
@@ -3555,11 +3554,14 @@ input[type="button"].btn-block {
 
 .collapsing {
   position: relative;
-  height: 0;
+  height: 100%;
   overflow: hidden;
   -webkit-transition: height 0.35s ease;
   -o-transition: height 0.35s ease;
   transition: height 0.35s ease;
+}
+.collapsed {
+  height: 0;
 }
 @media (prefers-reduced-motion: reduce) {
   .collapsing {
@@ -11054,6 +11056,7 @@ h5,
 }
 @media (max-width: 991.98px) {
   .ftco-navbar-light .navbar-nav > .nav-item > .nav-link {
+    display: flex;
     padding-left: 0;
     padding-right: 0;
     padding-bottom: 0;

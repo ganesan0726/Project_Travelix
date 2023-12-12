@@ -1,101 +1,57 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Header from "../Components/Header";
 import Footer from "../Components/Footer";
 import { Link } from "react-router-dom";
 import HotelList from "../Components/HotelList";
 import HotelSearch from "../Components/HotelSearch";
+import axios from "axios";
 
 const Hotel = () => {
-  const hotel_List = [
-    {
-      hotel_image : require("../images/hotel-resto-1.jpg"),
-      hotel_price : 300,
-      hotel_stay : 8,
-      hotel_name : "Sai Beach Resort",
-      hotel_location : "Mumbai, India",
-      hotel_washRoom : 2,
-      hotel_bed : 3
-    },
-    {
-      hotel_image : require("../images/hotel-resto-2.jpg"),
-      hotel_price : 500,
-      hotel_stay : 10,
-      hotel_name : "LeMerdian",
-      hotel_location : "Switzerland",
-      hotel_washRoom : 3,
-      hotel_bed : 4
-    },
-    {
-      hotel_image : require("../images/hotel-resto-3.jpg"),
-      hotel_price : 300,
-      hotel_stay : 8,
-      hotel_name : "Royal Palace",
-      hotel_location : "Rome",
-      hotel_washRoom : 2,
-      hotel_bed : 3
-    },
-    {
-      hotel_image : require("../images/hotel-resto-4.jpg"),
-      hotel_price : 300,
-      hotel_stay : 8,
-      hotel_name : "Hilton",
-      hotel_location : "Japan",
-      hotel_washRoom : 2,
-      hotel_bed : 3
-    },
-    {
-      hotel_image : require("../images/hotel-resto-5.jpg"),
-      hotel_price : 300,
-      hotel_stay : 8,
-      hotel_name : "Ceaser Hotel",
-      hotel_location : "Vietnam",
-      hotel_washRoom : 2,
-      hotel_bed : 3
-    },
-    {
-      hotel_image : require("../images/hotel-resto-6.jpg"),
-      hotel_price : 300,
-      hotel_stay : 8,
-      hotel_name : "Hotel Don Carlton",
-      hotel_location : "Dubai",
-      hotel_washRoom : 2,
-      hotel_bed : 3
-    },
-    {
-      hotel_image : require("../images/hotel-resto-7.jpg"),
-      hotel_price : 300,
-      hotel_stay : 8,
-      hotel_name : "Holiday Resort",
-      hotel_location : "England",
-      hotel_washRoom : 2,
-      hotel_bed : 3
-    },
-    {
-      hotel_image : require("../images/hotel-resto-8.jpg"),
-      hotel_price : 300,
-      hotel_stay : 8,
-      hotel_name : "Stay High Hotel",
-      hotel_location : "Norway",
-      hotel_washRoom : 2,
-      hotel_bed : 3
-    },
-    {
-      hotel_image : require("../images/hotel-resto-9.jpg"),
-      hotel_price : 300,
-      hotel_stay : 8,
-      hotel_name : "Snow Fall Resort",
-      hotel_location : "Russia",
-      hotel_washRoom : 2,
-      hotel_bed : 3
-    },
-    
-  ]
+  const baseURL = "https://travelix-backend-ngxp.onrender.com/api/";
 
+  const [listHotels, setListHotels] = useState([]);
+  const [loading, setLoading] = useState(false);
 
-  const searchHotelApi = (filterHotels) => {
-    console.log(filterHotels)
-  }
-  
+  useEffect(() => {
+    getAllHotels();
+  }, []);
+
+  const getAllHotels = async () => {
+    try {
+      setLoading(true);
+      const response = await axios.get(`${baseURL}list/hotelLists`);
+      console.log(response.data)
+      setListHotels(response.data);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const searchHotelApi = async (filterHotels) => {
+    try {
+      if (
+        !filterHotels ||
+        (filterHotels.hotelLocation && filterHotels.hotelLocation === "")
+      ) {
+        getAllHotels();
+      } else {
+        setLoading(true);
+        const response = await axios.get(
+          `${baseURL}list/hotelLists?hotelLocation=${filterHotels.hotelLocation}`,
+        );
+        setListHotels(response.data);
+      }
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const LoadingSpinner = () => <div className="loader"></div>;
+
   return (
     <>
       <Header />
@@ -139,11 +95,15 @@ const Hotel = () => {
       <section className="ftco-section">
         <div className="container">
           <div className="row">
-            {hotel_List.map((list,index) => {
-              return (
-                <HotelList list={list} key={index} />
-              )
-            })}
+            {loading ? (
+              <LoadingSpinner />
+            ) : (
+              listHotels.map((value, index) => {
+                return (
+                  <HotelList key={index} value={value} />
+                )
+              })
+            )}
           </div>
           <div className="row mt-5">
             <div className="col text-center">

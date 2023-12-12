@@ -2,7 +2,141 @@ video : 1:01:47;
 
 hotel-search and Tour search la irundu continue pananum..
 
+table creattions : 
+CREATE TABLE ganesan_hotelsList (hotelName varchar(255), hotelLocation varchar(255), hotelStayCount varchar(255), hotelWashRoom varchar(255), hotelBedCount varchar(255), hotelPrice varchar(255), hotelImage longtext, id int not null AUTO_INCREMENT, PRIMARY KEY(id));
+
 
     const sqlquery = `INSERT INTO hotelLists (hotelName,locationName,stayCount, washRoomCount, bedCount, price, hotelImage) values ('${data.hotelName}', '${data.locationName}', '${data.stayCount}', '${data.washRoomCount}', '${data.bedCount}', '${data.price}', '${data.hotelImage}' )`;
 
     const sqlQuery = `INSERT INTO destinations (destinationName, destinationImage, destinationCount) values ('${data.destinationName}', '${data.destinationImage}', '${data.destinationCount}')`;
+
+
+
+    const deleteDestination = async (id) => {
+    setLoading(true);
+    const url = baseURL + "/delete/destination/" + id;
+
+    try {
+      const response = await axios.delete(url);
+
+      setLoading(false);
+      showPopup({
+        success: true,
+        message: response.data.message,
+      });
+      fetchData();
+    } catch (error) {
+      setLoading(false);
+      setShowPopup({
+        error: true,
+        message: "Failed to add data.",
+        data: null,
+      });
+    }
+  };
+
+
+  
+/* Desktop styles */
+.navbar {
+  background-color: #333 !important; 
+  padding: 15px 0 !important;
+}
+
+.navbar-brand {
+  font-size: 1.5rem !important;
+  color: #fff !important;
+  text-decoration: none !important;
+}
+
+.navbar-brand span {
+  font-weight: bold !important;
+}
+
+.navbar-toggler {
+  border: none !important;
+  color: #fff !important;
+  cursor: pointer !important;
+}
+
+.navbar-toggler:focus {
+  outline: none !important;
+}
+
+
+.navbar-nav {
+  margin-top: 10px !important;
+}
+
+.nav-link {
+  color: #fff !important;
+  text-decoration: none !important;
+  padding: 8px 15px !important;
+  display: inline-block !important;
+}
+
+.nav-item.active .nav-link {
+  border-bottom: 2px solid #ffc107 !important; /* or your desired color */
+}
+
+/* Tablet styles (up to 768px) */
+@media (max-width: 768px) {
+  .navbar-toggler {
+    display: block !important;
+  }
+
+  .navbar-collapse {
+    display: none !important;
+  }
+
+  .navbar-nav {
+    margin-top: 0 !important;
+    text-align: center !important;
+  }
+
+  .nav-link {
+    display: block !important;
+    padding: 10px 0 !important;
+  }
+
+  .navbar-toggler.collapsed + .navbar-collapse {
+    display: none !important;
+  }
+
+  .navbar-toggler:not(.collapsed) + .navbar-collapse {
+    display: block !important;
+  }
+}
+
+/* Mobile styles (up to 576px) */
+@media (max-width: 576px) {
+  .navbar-brand {
+    font-size: 1.2rem !important;
+  }
+}
+
+/* Add this CSS to your existing styles or create a new stylesheet */
+.navbar-toggler {
+  border: none !important;
+  color: #fff !important;
+  cursor: pointer !important;
+}
+
+.navbar-toggler:focus {
+  outline: none !important;
+}
+
+.oi-menu::before {
+  content: '\f067' !important; /* This is the close icon; adjust as needed */
+}
+
+.menu-open .oi-menu::before {
+  content: '\f068' !important; /* This is the open icon; adjust as needed */
+}
+
+/* Additional styles for the close button appearance */
+.menu-open .navbar-toggler {
+  background-color: #333 !important;
+  border-color: #333 !important;
+  color: #fff !important;
+}
